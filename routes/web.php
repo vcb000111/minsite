@@ -21,7 +21,7 @@ Route::group(['prefix' => 'manage'], function () {
     Route::get('/', 'HomeController@access')->name('admin.access');
     Route::post('/', 'HomeController@accessPost')->name('admin.access.post');
     Route::get('/exit', 'HomeController@exit')->name('admin.access.exit')->middleware('accessMiddleware');
-    Route::get('/list', 'HomeController@index')->name('admin.index')->middleware('accessMiddleware');
+    Route::get('/list', 'HomeController@index')->name('admin.index');
     Route::get('/list/search', 'HomeController@listSearch')->name('admin.list.search')->middleware('accessMiddleware');
     Route::get('/thumbnail', 'HomeController@thumbnail')->name('admin.thumbnail')->middleware('accessMiddleware');
     Route::get('/thumbnail/random', 'HomeController@thumbnailRandom')->name('admin.thumbnail.random')->middleware('accessMiddleware');
