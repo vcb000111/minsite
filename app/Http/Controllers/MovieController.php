@@ -124,8 +124,8 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        // $movie = Movie::find($id);
-        // $movie->delete();
+        $movie = Movie::find($id);
+        $movie->delete();
         echo '<script type="text/javascript">', 'history.go(-2);', '</script>';
     }
     public function rate($id)
