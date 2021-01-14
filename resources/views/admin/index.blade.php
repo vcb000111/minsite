@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-@section('title', 'MySite - List')
+@section('title', 'MinSite - List')
 
     <div id="content">
         <div class="container-fluid bg-gray-200 p-4 border border-bottom-primary border rounded">

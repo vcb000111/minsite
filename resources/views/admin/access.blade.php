@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('content')
-@section('title', 'MySite - Access Key')
-    <div id="content">
+@section('title', 'MinSite - Access Key')
+    <div id="content" style="height: 500px" class="d-flex align-items-center">
         <div class="container mt-5 w-25 bg-gray-200 p-4 border border-bottom-primary border rounded">
 
             <!-- Page Heading -->

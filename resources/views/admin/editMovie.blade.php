@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-@section('title', 'MySite - Edit Movie')
+@section('title', 'MinSite - Edit Movie')
     <div class="container-fluid bg-gray-200 p-4 border border-bottom-primary border rounded">
         <div class="card shadow mb-4">
             <div class="card-header py-3">

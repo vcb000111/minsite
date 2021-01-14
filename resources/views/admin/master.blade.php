@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap4.min.css">
     <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.bootstrap4.min.css">
     <link rel="stylesheet" href="public/admin/css/w3.css">
+    <link rel="icon" href="public/admin/logo1.png" type="image/icon type">
     <style>
         .table-responsive tbody tr:hover {
             background-color: #ebf2fc;

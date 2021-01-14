@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-@section('title', 'MySite - Create Category')
+@section('title', 'MinSite - Create Category')
     <div class="container-fluid bg-gray-200 p-4 border border-bottom-primary border rounded">
 
         <div class="card shadow mb-4">

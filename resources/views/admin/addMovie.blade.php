@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-@section('title', 'MySite - Add Movie')
+@section('title', 'MinSite - Add Movie')
     <div class="container-fluid bg-gray-200 p-4 border border-bottom-primary border rounded">
 
         <!-- Content Row -->

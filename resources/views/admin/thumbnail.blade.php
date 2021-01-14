@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-@section('title', 'MySite - Thumbnail')
+@section('title', 'MinSite - Thumbnail')
 
     <div id="content">
         <div class="container-fluid bg-gray-200 p-4 border border-bottom-primary border rounded">
