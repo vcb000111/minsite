@@ -3,213 +3,237 @@
 @section('title', 'MinSite - List')
 
     <div id="content">
-        <div class="container-fluid bg-gray-200 p-4 border border-bottom-primary border rounded">
+        <div class="container-fluid bg-gray-200 p-2 border border-bottom-primary border rounded">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="m-0 font-weight-bold text-primary">
                         <h4 class="text-center font-weight-bold mb-4">List Movie</h4>
-                        <span><a href="{{ route('admin.index') }}"
-                                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mr-2">List</a></span>
-                        <a href="{{ route('admin.thumbnail') }}"
-                            class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail</a>
-                        <a href="{{ route('admin.thumbnail.random') }}"
-                            class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail
-                            Random</a>
-                        <a href="{{ route('admin.access.exit') }}"
-                            class="float-right d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">Exit</a>
-                        <a href="{{ route('admin.cate.add') }}"
-                            class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm mr-2">Create
-                            Category</a>
-                        <a href="{{ route('admin.movie.add') }}"
-                            class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm mr-2">Add
-                            Movie</a>
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
 
-                        @if ($seen == 0)
-                            @if ($favourite == 0)
-                                @if ($cate_id == 0)
-                                    {{-- 1 --}}
-                                    <div class="btn-group float-right shadow-sm">
-                                        <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle mr-2"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Category
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            @foreach ($cate as $item_cate)
-                                                <a class="dropdown-item"
-                                                    href="{{ route('admin.index', ['cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('admin.index', ['favourite' => '1']) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-success shadow-sm mr-2">Favourite</a>
-                                    <a href="{{ route('admin.index', ['seen' => '1']) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-success shadow-sm mr-2">Seen</a>
-                                @else
-                                    {{-- 2 --}}
-                                    <div class="btn-group float-right shadow-sm">
-                                        <button type="button" class="btn btn-success btn-sm dropdown-toggle mr-2"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Category
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            @foreach ($cate as $item_cate)
-                                                @if ($cate_id == $item_cate->id)
-                                                    <a class="dropdown-item active"
-                                                        href="{{ route('admin.index', ['cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                                @else
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('admin.index', ['cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('admin.index', ['favourite' => '1', 'cate_id' => $cate_id]) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-success shadow-sm mr-2">Favourite</a>
-                                    <a href="{{ route('admin.index', ['seen' => '1', 'cate_id' => $cate_id]) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-success shadow-sm mr-2">Seen</a>
-                                @endif
-                            @else
-                                @if ($cate_id == 0)
-                                    {{-- 3 --}}
-                                    <div class="btn-group float-right shadow-sm">
-                                        <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle mr-2"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Category
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            @foreach ($cate as $item_cate)
-                                                <a class="dropdown-item"
-                                                    href="{{ route('admin.index', ['favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('admin.index') }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2">Favourite</a>
-                                    <a href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1']) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-success shadow-sm mr-2">Seen</a>
-                                @else
-                                    {{-- 4 --}}
-                                    <div class="btn-group float-right shadow-sm">
-                                        <button type="button" class="btn btn-success btn-sm dropdown-toggle mr-2"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Category
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            @foreach ($cate as $item_cate)
-                                                @if ($cate_id == $item_cate->id)
-                                                    <a class="dropdown-item active"
-                                                        href="{{ route('admin.index', ['favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                                @else
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('admin.index', ['favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('admin.index', ['cate_id' => $cate_id]) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2">Favourite</a>
-                                    <a href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1', 'cate_id' => $cate_id]) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-success shadow-sm mr-2">Seen</a>
-                                @endif
-                            @endif
-                        @else
-                            @if ($favourite == 0)
-                                @if ($cate_id == 0)
-                                    {{-- 5 --}}
-                                    <div class="btn-group float-right shadow-sm">
-                                        <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle mr-2"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Category
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            @foreach ($cate as $item_cate)
-                                                <a class="dropdown-item"
-                                                    href="{{ route('admin.index', ['seen' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1']) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-success shadow-sm mr-2">Favourite</a>
-                                    <a href="{{ route('admin.index') }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2">Seen</a>
-                                @else
-                                    {{-- 6 --}}
-                                    <div class="btn-group float-right shadow-sm">
-                                        <button type="button" class="btn btn-success btn-sm dropdown-toggle mr-2"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Category
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            @foreach ($cate as $item_cate)
-                                                @if ($cate_id == $item_cate->id)
-                                                    <a class="dropdown-item active"
-                                                        href="{{ route('admin.index', ['seen' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                                @else
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('admin.index', ['seen' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1', 'cate_id' => $cate_id]) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-success shadow-sm mr-2">Favourite</a>
-                                    <a href="{{ route('admin.index', ['cate_id' => $cate_id]) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2">Seen</a>
-                                @endif
-                            @else
-                                {{-- 7 --}}
-                                @if ($cate_id == 0)
-                                    <div class="btn-group float-right shadow-sm">
-                                        <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle mr-2"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Category
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            @foreach ($cate as $item_cate)
-                                                <a class="dropdown-item"
-                                                    href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('admin.index', ['seen' => '1']) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2">Favourite</a>
-                                    <a href="{{ route('admin.index', ['favourite' => '1']) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2">Seen</a>
-                                @else
-                                    {{-- 8 --}}
-                                    <div class="btn-group float-right shadow-sm">
-                                        <button type="button" class="btn btn-success btn-sm dropdown-toggle mr-2"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Category
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            @foreach ($cate as $item_cate)
-                                                @if ($cate_id == $item_cate->id)
-                                                    <a class="dropdown-item active"
-                                                        href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                                @else
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('admin.index', ['seen' => '1', 'cate_id' => $cate_id]) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2">Favourite</a>
-                                    <a href="{{ route('admin.index', ['favourite' => '1', 'cate_id' => $cate_id]) }}"
-                                        class="float-right d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2">Seen</a>
-                                @endif
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
 
-                            @endif
-                        @endif
-                        <form style="display:inline" class="input-group-sm" method="GET" id="myform"
-                            enctype="multipart/form-data" action="{{ route('admin.list.search') }}">
-                            <input type="text" class="form-control w-auto float-right mr-2" name="search"
-                                placeholder="Search" required name="access_key">
-                        </form>
+                                    <span><a href="{{ route('admin.index') }}"
+                                            class="btn btn-sm btn-primary shadow-sm mr-2">List</a></span>
+                                    <a href="{{ route('admin.thumbnail') }}"
+                                        class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail</a>
+                                    <a href="{{ route('admin.thumbnail.random') }}"
+                                        class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail
+                                        Random</a>
+
+                                </ul>
+                                <form class="form-inline input-group-sm" method="GET" id="myform"
+                                    enctype="multipart/form-data" action="{{ route('admin.list.search') }}">
+                                    <input type="text" class="form-control w-auto float-right mr-2" name="search"
+                                        placeholder="Search list" required name="access_key">
+                                </form>
+                                <form class="form-inline input-group-sm" method="GET" id="myform"
+                                    enctype="multipart/form-data" action="{{ route('admin.thumbnail.search') }}">
+                                    <input type="text" class="form-control w-auto float-right mr-2" name="search"
+                                        placeholder="Search thumbnail" required name="access_key">
+                                </form>
+
+
+
+                                @if ($seen == 0)
+                                    @if ($favourite == 0)
+                                        @if ($cate_id == 0)
+                                            {{-- 1 --}}
+                                            <a href="{{ route('admin.index', ['seen' => '1']) }}"
+                                                class="btn btn-sm btn-outline-success shadow-sm mr-2">Seen</a>
+                                            <a href="{{ route('admin.index', ['favourite' => '1']) }}"
+                                                class="btn btn-sm btn-outline-success shadow-sm mr-2">Favourite</a>
+                                            <div class="btn-group float-right shadow-sm">
+                                                <button type="button"
+                                                    class="btn btn-outline-success btn-sm dropdown-toggle mr-2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Category
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @foreach ($cate as $item_cate)
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('admin.index', ['cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @else
+                                            {{-- 2 --}}
+                                            <a href="{{ route('admin.index', ['seen' => '1', 'cate_id' => $cate_id]) }}"
+                                                class="btn btn-sm btn-outline-success shadow-sm mr-2">Seen</a>
+                                            <a href="{{ route('admin.index', ['favourite' => '1', 'cate_id' => $cate_id]) }}"
+                                                class="btn btn-sm btn-outline-success shadow-sm mr-2">Favourite</a>
+                                            <div class="btn-group float-right shadow-sm">
+                                                <button type="button" class="btn btn-success btn-sm dropdown-toggle mr-2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Category
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @foreach ($cate as $item_cate)
+                                                        @if ($cate_id == $item_cate->id)
+                                                            <a class="dropdown-item active"
+                                                                href="{{ route('admin.index', ['cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                        @else
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.index', ['cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @else
+                                        @if ($cate_id == 0)
+                                            {{-- 3 --}}
+                                            <a href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1']) }}"
+                                                class="btn btn-sm btn-outline-success shadow-sm mr-2">Seen</a>
+                                            <a href="{{ route('admin.index') }}"
+                                                class="btn btn-sm btn-success shadow-sm mr-2">Favourite</a>
+                                            <div class="btn-group float-right shadow-sm">
+                                                <button type="button"
+                                                    class="btn btn-outline-success btn-sm dropdown-toggle mr-2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Category
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @foreach ($cate as $item_cate)
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('admin.index', ['favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @else
+                                            {{-- 4 --}}
+                                            <a href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1', 'cate_id' => $cate_id]) }}"
+                                                class="btn btn-sm btn-outline-success shadow-sm mr-2">Seen</a>
+                                            <a href="{{ route('admin.index', ['cate_id' => $cate_id]) }}"
+                                                class="btn btn-sm btn-success shadow-sm mr-2">Favourite</a>
+                                            <div class="btn-group float-right shadow-sm">
+                                                <button type="button" class="btn btn-success btn-sm dropdown-toggle mr-2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Category
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @foreach ($cate as $item_cate)
+                                                        @if ($cate_id == $item_cate->id)
+                                                            <a class="dropdown-item active"
+                                                                href="{{ route('admin.index', ['favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                        @else
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.index', ['favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endif
+                                @else
+                                    @if ($favourite == 0)
+                                        @if ($cate_id == 0)
+                                            {{-- 5 --}}
+                                            <a href="{{ route('admin.index') }}"
+                                                class="btn btn-sm btn-success shadow-sm mr-2">Seen</a>
+                                            <a href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1']) }}"
+                                                class="btn btn-sm btn-outline-success shadow-sm mr-2">Favourite</a>
+                                            <div class="btn-group float-right shadow-sm">
+                                                <button type="button"
+                                                    class="btn btn-outline-success btn-sm dropdown-toggle mr-2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Category
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @foreach ($cate as $item_cate)
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('admin.index', ['seen' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @else
+                                            {{-- 6 --}}
+                                            <a href="{{ route('admin.index', ['cate_id' => $cate_id]) }}"
+                                                class="btn btn-sm btn-success shadow-sm mr-2">Seen</a>
+                                            <a href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1', 'cate_id' => $cate_id]) }}"
+                                                class="btn btn-sm btn-outline-success shadow-sm mr-2">Favourite</a>
+                                            <div class="btn-group float-right shadow-sm">
+                                                <button type="button" class="btn btn-success btn-sm dropdown-toggle mr-2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Category
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @foreach ($cate as $item_cate)
+                                                        @if ($cate_id == $item_cate->id)
+                                                            <a class="dropdown-item active"
+                                                                href="{{ route('admin.index', ['seen' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                        @else
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.index', ['seen' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @else
+                                        {{-- 7 --}}
+                                        @if ($cate_id == 0)
+                                            <a href="{{ route('admin.index', ['favourite' => '1']) }}"
+                                                class="btn btn-sm btn-success shadow-sm mr-2">Seen</a>
+                                            <a href="{{ route('admin.index', ['seen' => '1']) }}"
+                                                class="btn btn-sm btn-success shadow-sm mr-2">Favourite</a>
+                                            <div class="btn-group float-right shadow-sm">
+                                                <button type="button"
+                                                    class="btn btn-outline-success btn-sm dropdown-toggle mr-2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Category
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @foreach ($cate as $item_cate)
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @else
+                                            {{-- 8 --}}
+                                            <a href="{{ route('admin.index', ['favourite' => '1', 'cate_id' => $cate_id]) }}"
+                                                class="btn btn-sm btn-success shadow-sm mr-2">Seen</a>
+                                            <a href="{{ route('admin.index', ['seen' => '1', 'cate_id' => $cate_id]) }}"
+                                                class="btn btn-sm btn-success shadow-sm mr-2">Favourite</a>
+                                            <div class="btn-group float-right shadow-sm">
+                                                <button type="button" class="btn btn-success btn-sm dropdown-toggle mr-2"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Category
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    @foreach ($cate as $item_cate)
+                                                        @if ($cate_id == $item_cate->id)
+                                                            <a class="dropdown-item active"
+                                                                href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                        @else
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.index', ['seen' => '1', 'favourite' => '1', 'cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
+
+                                    @endif
+                                @endif
+                                <a href="{{ route('admin.movie.add') }}"
+                                    class=" btn btn-sm btn-outline-primary shadow-sm mr-2">Add
+                                    Movie</a>
+                                <a href="{{ route('admin.cate.add') }}"
+                                    class="btn btn-sm btn-outline-primary shadow-sm mr-2">Create
+                                    Category</a>
+                                <a href="{{ route('admin.access.exit') }}" class="btn btn-sm btn-danger shadow-sm">Exit</a>
+                            </div>
+                        </nav>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-2">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-striped text-center text-dark" id="dataTable"
                             width="100%">

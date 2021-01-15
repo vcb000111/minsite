@@ -2,7 +2,7 @@
 @section('content')
 @section('title', 'MinSite - Access Key')
     <div id="content" style="height: 500px" class="d-flex align-items-center">
-        <div class="container mt-5 w-25 bg-gray-200 p-4 border border-bottom-primary border rounded">
+        <div style="width: 300px" class="container mt-5 bg-gray-200 p-4 border border-bottom-primary border rounded">
 
             <!-- Page Heading -->
             <div class="mb-4">

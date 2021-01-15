@@ -117,7 +117,7 @@ class MovieController extends Controller
             $movie->seen = 0;
         }
         $movie->save();
-        return redirect()->route('admin.index');
+        echo '<script type="text/javascript">', 'history.go(-2);', '</script>';
     }
 
     /**

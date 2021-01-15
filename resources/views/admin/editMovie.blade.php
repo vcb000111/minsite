@@ -5,24 +5,47 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h4 class="text-center font-weight-bold mb-4 text-primary">Edit Movie</h4>
-                <span><a href="{{ route('admin.index') }}"
-                        class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm mr-2">List</a></span>
-                <a href="{{ route('admin.thumbnail') }}"
-                    class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail</a>
-                <a href="{{ route('admin.thumbnail.random') }}"
-                    class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail
-                    Random</a>
-                <a href="{{ route('admin.access.exit') }}"
-                    class="float-right d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">Exit</a>
-                <button data-toggle="modal" data-target="#exampleModal"
-                    class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-danger shadow-sm mr-2">Remove this
-                    movie</button>
-                <a href="{{ route('admin.cate.add') }}"
-                    class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm mr-2">Create
-                    Category</a>
-                <a href="{{ route('admin.movie.add') }}"
-                    class="float-right d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm mr-2">Add
-                    Movie</a>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <span><a href="{{ route('admin.index') }}"
+                                    class="btn btn-sm btn-outline-primary shadow-sm mr-2">List</a></span>
+                            <a href="{{ route('admin.thumbnail') }}"
+                                class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail</a>
+                            <a href="{{ route('admin.thumbnail.random') }}"
+                                class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail
+                                Random</a>
+                        </ul>
+                        <form class="form-inline input-group-sm" method="GET" id="myform" enctype="multipart/form-data"
+                            action="{{ route('admin.list.search') }}">
+                            <input type="text" class="form-control w-auto float-right mr-2" name="search"
+                                placeholder="Search list" required name="access_key">
+                        </form>
+                        <form class="form-inline input-group-sm" method="GET" id="myform" enctype="multipart/form-data"
+                            action="{{ route('admin.thumbnail.search') }}">
+                            <input type="text" class="form-control w-auto float-right mr-2" name="search"
+                                placeholder="Search thumbnail" required name="access_key">
+                        </form>
+                        <a href="{{ route('admin.movie.add') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">Add
+                            Movie</a>
+                        <a href="{{ route('admin.cate.add') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">Create
+                            Category</a>
+                        <button data-toggle="modal" data-target="#exampleModal"
+                            class="btn btn-sm btn-outline-danger shadow-sm mr-2">Remove
+                            this
+                            movie</button>
+                        <a href="{{ route('admin.access.exit') }}" class="btn btn-sm btn-danger shadow-sm">Exit</a>
+
+                    </div>
+                </nav>
+
+
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -68,7 +91,7 @@
                             </div>
                             <input type="text" class="form-control mt-2" value="{{ $movie->url }}" placeholder="url"
                                 name="url">
-                            <input type="text" class="form-control mt-2" value="{{ $movie->subtitle }}"
+                            <input type="text" class="form-control mt-2 mb-2" value="{{ $movie->subtitle }}"
                                 placeholder="subtitle" name="subtitle">
                         </div>
                         <div class="col-md-6">

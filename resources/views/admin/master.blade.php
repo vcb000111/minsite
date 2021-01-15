@@ -53,7 +53,7 @@
                 <div id="content">
 
                     <!-- Begin Page Content -->
-                    <div class="container-fluid mt-4">
+                    <div>
                         {{-- Đây là main --}}
                         {{-- End Đây là main --}}
                         @yield('content')
