@@ -101,7 +101,6 @@ class MovieController extends Controller
         $movie->code = $request->code;
         $movie->name = $request->name;
         $movie->day_release = $request->day_release;
-        $movie->seen = $request->seen;
         $movie->cate_id = $request->cate_id;
         $movie->subtitle = $request->subtitle;
         $movie->actress = $request->actress;
@@ -111,6 +110,11 @@ class MovieController extends Controller
             $movie->favourite = 1;
         } else {
             $movie->favourite = 0;
+        }
+        if ($request->seen == 1) {
+            $movie->seen = 1;
+        } else {
+            $movie->seen = 0;
         }
         $movie->save();
         return redirect()->route('admin.index');
