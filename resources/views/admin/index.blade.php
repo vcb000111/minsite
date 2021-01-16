@@ -283,10 +283,10 @@
                                                 style="cursor:pointer" onclick="onClick(this)">
                                             @if ($item->seen == 0)
                                                 <a href="{{ route('admin.movie.seen', $item->id) }}" class="ml-2 mr-2"><i
-                                                        class="fas fa-eye fa-lg"></i></a>
+                                                        class="fas fa-eye fa-lg mt-1"></i></a>
                                             @else
                                                 <a href="{{ route('admin.movie.seen', $item->id) }}" class="ml-2 mr-2"><i
-                                                        class="fas fa-eye text-warning fa-lg"></i></a>
+                                                        class="fas fa-eye text-warning fa-lg mt-1"></i></a>
                                             @endif
                                             @if ($item->favourite == 1)
                                                 <a href="{{ route('admin.movie.rate', $item->id) }}"><i

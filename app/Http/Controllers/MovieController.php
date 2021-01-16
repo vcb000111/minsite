@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Movie;
 use App\Cate;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class MovieController extends Controller
 {
@@ -45,8 +46,15 @@ class MovieController extends Controller
         $movie->day_release = $request->day_release;
         $movie->cate_id = $request->cate_id;
         $movie->subtitle = $request->subtitle;
+
+        $https = strpos($request->thumbnail, 'https');
+        if ($https !== false) {
+            $movie->thumbnail = $request->thumbnail;
+        } else {
+            $movie->thumbnail = str_replace('http', 'https', $request->thumbnail);
+        }
+
         $movie->actress = $request->actress;
-        $movie->thumbnail = $request->thumbnail;
         $movie->url = $request->url;
         if ($request->favourite == 1) {
             $movie->favourite = 1;
@@ -104,7 +112,12 @@ class MovieController extends Controller
         $movie->cate_id = $request->cate_id;
         $movie->subtitle = $request->subtitle;
         $movie->actress = $request->actress;
-        $movie->thumbnail = $request->thumbnail;
+        $https = strpos($request->thumbnail, 'https');
+        if ($https !== false) {
+            $movie->thumbnail = $request->thumbnail;
+        } else {
+            $movie->thumbnail = str_replace('http', 'https', $request->thumbnail);
+        }
         $movie->url = $request->url;
         if ($request->favourite == 1) {
             $movie->favourite = 1;

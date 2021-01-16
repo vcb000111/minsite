@@ -279,11 +279,11 @@
                                                     @endif
                                                     @if ($item->seen == 0)
                                                         <a href="{{ route('admin.movie.seen', $item->id) }}"
-                                                            class="ml-2 mr-2 float-right mt-1"><i
+                                                            class="ml-2 mr-2 float-right" style="padding-top: 6px"><i
                                                                 class="fas fa-eye fa-lg"></i></a>
                                                     @else
                                                         <a href="{{ route('admin.movie.seen', $item->id) }}"
-                                                            class="ml-2 mr-2 float-right mt-1"><i
+                                                            class="ml-2 mr-2 float-right" style="padding-top: 6px"><i
                                                                 class="fas fa-eye text-warning fa-lg"></i></a>
                                                     @endif
                                                 </div>
