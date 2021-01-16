@@ -24,12 +24,12 @@
                                 class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail
                                 Random</a>
                         </ul>
-                        <form class="form-inline input-group-sm" method="GET" id="myform" enctype="multipart/form-data"
+                        <form class="form-inline input-group-sm" method="GET" enctype="multipart/form-data"
                             action="{{ route('admin.list.search') }}">
                             <input type="text" class="form-control w-auto float-right mr-2" name="search"
                                 placeholder="Search list" required name="access_key">
                         </form>
-                        <form class="form-inline input-group-sm" method="GET" id="myform" enctype="multipart/form-data"
+                        <form class="form-inline input-group-sm" method="GET" enctype="multipart/form-data"
                             action="{{ route('admin.thumbnail.search') }}">
                             <input type="text" class="form-control w-auto float-right mr-2" name="search"
                                 placeholder="Search thumbnail" required name="access_key">

@@ -33,13 +33,13 @@
                                             Random</a>
                                     @endif
                                 </ul>
-                                <form class="form-inline input-group-sm" method="GET" id="myform"
-                                    enctype="multipart/form-data" action="{{ route('admin.list.search') }}">
+                                <form class="form-inline input-group-sm" method="GET" enctype="multipart/form-data"
+                                    action="{{ route('admin.list.search') }}">
                                     <input type="text" class="form-control w-auto float-right mr-2" name="search"
                                         placeholder="Search list" required name="access_key">
                                 </form>
-                                <form class="form-inline input-group-sm" method="GET" id="myform"
-                                    enctype="multipart/form-data" action="{{ route('admin.thumbnail.search') }}">
+                                <form class="form-inline input-group-sm" method="GET" enctype="multipart/form-data"
+                                    action="{{ route('admin.thumbnail.search') }}">
                                     <input type="text" class="form-control w-auto float-right mr-2" name="search"
                                         placeholder="Search thumbnail" required name="access_key">
                                 </form>
@@ -311,17 +311,4 @@
             <!-- Content Row -->
         </div>
     </div>
-    <script>
-        $("#myform").on("submit", function() {
-            event.preventDefault();
-            let formData = $(this).serialize();
-
-            let fullUrl = window.href.location;
-            let queryPart = fullUrl.split("?")[1];
-
-            let finalForm = queryPart + "&"
-            formData;
-        });
-
-    </script>
 @endsection
