@@ -280,7 +280,8 @@
                                         </td>
                                         <td>
                                             <img src="{{ $item->thumbnail }}" alt="" class="img-fluid w-50"
-                                                style="cursor:pointer" onclick="onClick(this)">
+                                                style="cursor:pointer" onclick="onClick(this)"
+                                                title="{{ $item->thumbnail }}&#010;Click to preview">
                                             @if ($item->seen == 0)
                                                 <a href="{{ route('admin.movie.seen', $item->id) }}" class="ml-2 mr-2"><i
                                                         class="fas fa-eye fa-lg mt-1"></i></a>
