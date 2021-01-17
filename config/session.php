@@ -142,8 +142,7 @@ return [
     |
     */
 
-    'path' => '/;samesite=none',
-    'secure' => true,
+    'path' => '',
     /*
     |--------------------------------------------------------------------------
     | Session Cookie Domain
