@@ -162,13 +162,14 @@ class HomeController extends Controller
     }
     public function thumbnailSearch(Request $request)
     {
-        $movie = Movie::where('name', 'like', '%' . $request->search . '%')->orWhere('code', 'like', '%' . $request->search . '%')->latest()->paginate(40);
+        $movie = Movie::where('name', 'like', '%' . $request->search . '%')->orWhere('code', 'like', '%' . $request->search . '%')->orWhere('day_release', 'like', '%' . $request->search . '%')->orWhere('actress', 'like', '%' . $request->search . '%')->orWhere('url', 'like', '%' . $request->search . '%')->orWhere('subtitle', 'like', '%' . $request->search . '%')->latest()->paginate(40);
         $cate = Cate::all();
         $cate_id = 0;
         $search = $request->search;
         $favourite = 0;
         $seen = 0;
         $thumbnail = 1;
+        $movie->appends(['search' => $request->search])->links();
         return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'search', 'favourite', 'seen', 'thumbnail'));
     }
     public function listSearch(Request $request)
@@ -179,6 +180,7 @@ class HomeController extends Controller
         $search = $request->search;
         $favourite = 0;
         $seen = 0;
+        $movie->appends(['search' => $request->search])->links();
         return view('admin.index', compact('movie', 'cate', 'cate_id', 'search', 'favourite', 'seen'));
     }
     public function thumbnailRandom(Request $request)
