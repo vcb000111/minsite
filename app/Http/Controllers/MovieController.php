@@ -50,17 +50,16 @@ class MovieController extends Controller
         $movie->cate_id = $request->cate_id;
         $movie->subtitle = $request->subtitle;
 
-        // $https = strpos($request->thumbnail, 'https');
-        // if ($https !== false) {
-        //     $movie->thumbnail = $request->thumbnail;
-        // } else {
-        //     $movie->thumbnail = str_replace('http', 'https', $request->thumbnail);
-        // }
-
         $arr = explode(".", $request->thumbnail);
         $arrReverse = array_reverse($arr);
         $filename = $request->code . '.' . $arrReverse[0];
-        $image = file_get_contents($request->thumbnail);
+        $arrContextOptions = array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+            ),
+        );
+        $image = file_get_contents($request->thumbnail, false, stream_context_create($arrContextOptions));
         file_put_contents(public_path('images/' . $filename), $image);
         $movie->thumbnail = 'public/images/' . $filename;
 
@@ -122,18 +121,18 @@ class MovieController extends Controller
         $movie->cate_id = $request->cate_id;
         $movie->subtitle = $request->subtitle;
         $movie->actress = $request->actress;
-        // $https = strpos($request->thumbnail, 'https');
-        // if ($https !== false) {
-        //     $movie->thumbnail = $request->thumbnail;
-        // } else {
-        //     $movie->thumbnail = str_replace('http', 'https', $request->thumbnail);
-        // }
 
         if ($movie->thumbnail != $request->thumbnail) {
             $arr = explode(".", $request->thumbnail);
             $arrReverse = array_reverse($arr);
             $filename = $request->code . '.' . $arrReverse[0];
-            $image = file_get_contents($request->thumbnail);
+            $arrContextOptions = array(
+                "ssl" => array(
+                    "verify_peer" => false,
+                    "verify_peer_name" => false,
+                ),
+            );
+            $image = file_get_contents($request->thumbnail, false, stream_context_create($arrContextOptions));
             file_put_contents(public_path('images/' . $filename), $image);
             $movie->thumbnail = 'public/images/' . $filename;
         }
@@ -189,12 +188,18 @@ class MovieController extends Controller
     }
     public function auto()
     {
-        $movie = Movie::skip(1)->take(1)->get();
+        $movie = Movie::skip(360)->take(20)->get();
         foreach ($movie as $item) {
             $arr = explode(".", $item->thumbnail);
             $arrReverse = array_reverse($arr);
             $filename = $item->code . '.' . $arrReverse[0];
-            $image = file_get_contents($item->thumbnail);
+            $arrContextOptions = array(
+                "ssl" => array(
+                    "verify_peer" => false,
+                    "verify_peer_name" => false,
+                ),
+            );
+            $image = file_get_contents($item->thumbnail, false, stream_context_create($arrContextOptions));
             file_put_contents(public_path('images/' . $filename), $image);
             $item->thumbnail = 'public/images/' . $filename;
             $item->save();
