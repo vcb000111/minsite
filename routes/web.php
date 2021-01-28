@@ -17,7 +17,10 @@ Route::get('/', function () {
     return redirect()->route('admin.access');
 });
 
+
 Route::group(['prefix' => 'manage'], function () {
+
+    Route::get('/auto', 'MovieController@auto')->name('admin.auto');
     Route::get('/', 'HomeController@access')->name('admin.access');
     Route::post('/', 'HomeController@accessPost')->name('admin.access.post');
     Route::get('/exit', 'HomeController@exit')->name('admin.access.exit')->middleware('accessMiddleware');

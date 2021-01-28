@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Movie;
 use App\Cate;
+use App\Movie;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class MovieController extends Controller
@@ -47,12 +50,19 @@ class MovieController extends Controller
         $movie->cate_id = $request->cate_id;
         $movie->subtitle = $request->subtitle;
 
-        $https = strpos($request->thumbnail, 'https');
-        if ($https !== false) {
-            $movie->thumbnail = $request->thumbnail;
-        } else {
-            $movie->thumbnail = str_replace('http', 'https', $request->thumbnail);
-        }
+        // $https = strpos($request->thumbnail, 'https');
+        // if ($https !== false) {
+        //     $movie->thumbnail = $request->thumbnail;
+        // } else {
+        //     $movie->thumbnail = str_replace('http', 'https', $request->thumbnail);
+        // }
+
+        $arr = explode(".", $request->thumbnail);
+        $arrReverse = array_reverse($arr);
+        $filename = $request->code . '.' . $arrReverse[0];
+        $image = file_get_contents($request->thumbnail);
+        file_put_contents(public_path('images/' . $filename), $image);
+        $movie->thumbnail = 'public/images/' . $filename;
 
         $movie->actress = $request->actress;
         $movie->url = $request->url;
@@ -112,12 +122,22 @@ class MovieController extends Controller
         $movie->cate_id = $request->cate_id;
         $movie->subtitle = $request->subtitle;
         $movie->actress = $request->actress;
-        $https = strpos($request->thumbnail, 'https');
-        if ($https !== false) {
-            $movie->thumbnail = $request->thumbnail;
-        } else {
-            $movie->thumbnail = str_replace('http', 'https', $request->thumbnail);
+        // $https = strpos($request->thumbnail, 'https');
+        // if ($https !== false) {
+        //     $movie->thumbnail = $request->thumbnail;
+        // } else {
+        //     $movie->thumbnail = str_replace('http', 'https', $request->thumbnail);
+        // }
+
+        if ($movie->thumbnail != $request->thumbnail) {
+            $arr = explode(".", $request->thumbnail);
+            $arrReverse = array_reverse($arr);
+            $filename = $request->code . '.' . $arrReverse[0];
+            $image = file_get_contents($request->thumbnail);
+            file_put_contents(public_path('images/' . $filename), $image);
+            $movie->thumbnail = 'public/images/' . $filename;
         }
+
         $movie->url = $request->url;
         if ($request->favourite == 1) {
             $movie->favourite = 1;
@@ -166,5 +186,19 @@ class MovieController extends Controller
         }
         $movie->save();
         return redirect()->back();
+    }
+    public function auto()
+    {
+        $movie = Movie::skip(1)->take(1)->get();
+        foreach ($movie as $item) {
+            $arr = explode(".", $item->thumbnail);
+            $arrReverse = array_reverse($arr);
+            $filename = $item->code . '.' . $arrReverse[0];
+            $image = file_get_contents($item->thumbnail);
+            file_put_contents(public_path('images/' . $filename), $image);
+            $item->thumbnail = 'public/images/' . $filename;
+            $item->save();
+        }
+        return $movie;
     }
 }
