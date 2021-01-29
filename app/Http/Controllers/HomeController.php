@@ -180,15 +180,9 @@ class HomeController extends Controller
         $cate_id = 0;
         $favourite = 0;
         $seen = 0;
-        if ($request->actress) {
-            $movie = Movie::where('actress', 'like', '%' . $request->actress . '%')->latest()->paginate(100);
-            $search = '';
-            $movie->appends(['actress' => $request->actress])->links();
-        } else {
-            $movie = Movie::where('name', 'like', '%' . $request->search . '%')->orWhere('code', 'like', '%' . $request->search . '%')->orWhere('day_release', 'like', '%' . $request->search . '%')->orWhere('actress', 'like', '%' . $request->search . '%')->orWhere('url', 'like', '%' . $request->search . '%')->orWhere('subtitle', 'like', '%' . $request->search . '%')->latest()->paginate(100);
-            $search = $request->search;
-            $movie->appends(['search' => $request->search])->links();
-        }
+        $movie = Movie::where('name', 'like', '%' . $request->search . '%')->orWhere('code', 'like', '%' . $request->search . '%')->orWhere('day_release', 'like', '%' . $request->search . '%')->orWhere('actress', 'like', '%' . $request->search . '%')->orWhere('url', 'like', '%' . $request->search . '%')->orWhere('subtitle', 'like', '%' . $request->search . '%')->latest()->paginate(100);
+        $search = $request->search;
+        $movie->appends(['search' => $request->search])->links();
         return view('admin.index', compact('movie', 'cate', 'cate_id', 'search', 'favourite', 'seen'));
     }
     public function thumbnailRandom(Request $request)

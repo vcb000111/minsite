@@ -250,14 +250,14 @@
                                         <div class="mb-2">
                                             <div class="">
                                                 <img style="cursor:pointer" onclick="onClick(this)"
-                                                    title=" Code: {{ $item->code }}&#010;Title: {{ $item->name }}&#010;Category: {{ $item_cate->cate_name }}&#010;Actress: {{ $item->actress }}&#010;Day release: {{ $item->day_release }}&#010;Day added: {{ $item->day_add }}"
+                                                    title=" Code: {{ $item->code }}&#010;Title: {{ $item->name }}&#010;Category: {{ $item_cate->cate_name }}&#010;Actress: {{ $item->actress }}&#010;Day release: {{ $item->day_release }}"
                                                     src="{{ $item->thumbnail }}" class="img-fluid" alt="">
                                                 <div class=""
                                                     style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">
                                                     <div class="text-center">
                                                         <a href="{{ route('admin.movie.get.edit', $item->id) }}"
                                                             class="card-link text-dark font-weight-bold"
-                                                            title="Code: {{ $item->code }}&#010;Title: {{ $item->name }}&#010;Category: {{ $item_cate->cate_name }}&#010;Actress: {{ $item->actress }}&#010;Day release: {{ $item->day_release }}&#010;Day added: {{ $item->day_add }}">
+                                                            title="Code: {{ $item->code }}&#010;Title: {{ $item->name }}&#010;Category: {{ $item_cate->cate_name }}&#010;Actress: {{ $item->actress }}&#010;Day release: {{ $item->day_release }}">
                                                             {{ $item->code }} {{ $item->name }}</a>
                                                     </div>
                                                 </div>

@@ -257,9 +257,14 @@
                                     <tr>
                                         <td>{{ $i++ }}</td>
                                         <td>
+                                            @php
+                                            $arr2=explode('-',$item->code);
+                                            $code=$arr2[0];
+                                            @endphp
                                             <span title="{{ $item->code }}"
                                                 style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">
-                                                {{ $item->code }}</span>
+                                                <a class="text-decoration-none text-primary"
+                                                    href="{{ route('admin.list.search', ['search' => $code]) }}">{{ $item->code }}</a></span>
                                         </td>
                                         <td><a style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;"
                                                 title="{{ $item->name }}" class="text-decoration-none text-primary"
@@ -268,7 +273,11 @@
                                         <td>
                                             @foreach ($cate as $item_cate)
                                                 @if ($item->cate_id == $item_cate->id)
-                                                    {{ $item_cate->cate_name }}
+
+                                                    <a style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;"
+                                                        title="{{ $item_cate->cate_name }}"
+                                                        class="text-decoration-none text-primary"
+                                                        href="{{ route('admin.index', ['cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}</a>
                                                 @endif
                                             @endforeach
                                         </td>
@@ -285,7 +294,7 @@
                                                 <span
                                                     style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;"
                                                     title="{{ $item->actress }}"><a
-                                                        href="{{ route('admin.list.search', ['actress' => $item->actress]) }}"
+                                                        href="{{ route('admin.list.search', ['search' => $item->actress]) }}"
                                                         class="text-decoration-none text-primary">{{ $item->actress }}</a></span>
                                             @else
                                                 <span
