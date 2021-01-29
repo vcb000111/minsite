@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use phpDocumentor\Reflection\PseudoTypes\False_;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class MovieController extends Controller
 {
@@ -50,18 +51,9 @@ class MovieController extends Controller
         $movie->cate_id = $request->cate_id;
         $movie->subtitle = $request->subtitle;
 
-        $arr = explode(".", $request->thumbnail);
-        $arrReverse = array_reverse($arr);
-        $filename = $request->code . '.' . $arrReverse[0];
-        $arrContextOptions = array(
-            "ssl" => array(
-                "verify_peer" => false,
-                "verify_peer_name" => false,
-            ),
-        );
-        $image = file_get_contents($request->thumbnail, false, stream_context_create($arrContextOptions));
-        file_put_contents(public_path('images/' . $filename), $image);
-        $movie->thumbnail = 'public/images/' . $filename;
+        $uploadedFileUrl = cloudinary()->uploadFile($request->thumbnail, array("overwrite" => true))->getPublicId();
+        $rename = cloudinary()->rename($uploadedFileUrl, $request->code, array("overwrite" => true));
+        $movie->thumbnail = $rename['secure_url'];
 
         $movie->actress = $request->actress;
         $movie->url = $request->url;
@@ -123,18 +115,9 @@ class MovieController extends Controller
         $movie->actress = $request->actress;
 
         if ($movie->thumbnail != $request->thumbnail) {
-            $arr = explode(".", $request->thumbnail);
-            $arrReverse = array_reverse($arr);
-            $filename = $request->code . '.' . $arrReverse[0];
-            $arrContextOptions = array(
-                "ssl" => array(
-                    "verify_peer" => false,
-                    "verify_peer_name" => false,
-                ),
-            );
-            $image = file_get_contents($request->thumbnail, false, stream_context_create($arrContextOptions));
-            file_put_contents(public_path('images/' . $filename), $image);
-            $movie->thumbnail = 'public/images/' . $filename;
+            $uploadedFileUrl = cloudinary()->uploadFile($request->thumbnail, array("overwrite" => true))->getPublicId();
+            $rename = cloudinary()->rename($uploadedFileUrl, $request->code, array("overwrite" => true));
+            $movie->thumbnail = $rename['secure_url'];
         }
 
         $movie->url = $request->url;
@@ -162,6 +145,7 @@ class MovieController extends Controller
     {
         $movie = Movie::find($id);
         $movie->delete();
+        cloudinary()->destroy($movie->code);
         echo '<script type="text/javascript">', 'history.go(-2);', '</script>';
     }
     public function rate($id)
@@ -188,20 +172,12 @@ class MovieController extends Controller
     }
     public function auto()
     {
-        $movie = Movie::skip(360)->take(20)->get();
+        ini_set('max_execution_time', 600);
+        $movie = Movie::skip(380)->take(20)->get();
         foreach ($movie as $item) {
-            $arr = explode(".", $item->thumbnail);
-            $arrReverse = array_reverse($arr);
-            $filename = $item->code . '.' . $arrReverse[0];
-            $arrContextOptions = array(
-                "ssl" => array(
-                    "verify_peer" => false,
-                    "verify_peer_name" => false,
-                ),
-            );
-            $image = file_get_contents($item->thumbnail, false, stream_context_create($arrContextOptions));
-            file_put_contents(public_path('images/' . $filename), $image);
-            $item->thumbnail = 'public/images/' . $filename;
+            $uploadedFileUrl = cloudinary()->uploadFile($item->thumbnail, array("overwrite" => true))->getPublicId();
+            $rename = cloudinary()->rename($uploadedFileUrl, $item->code, array("overwrite" => true));
+            $item->thumbnail = $rename['secure_url'];
             $item->save();
         }
         return $movie;
