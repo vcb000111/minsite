@@ -146,7 +146,7 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         $movie->delete();
         cloudinary()->destroy($movie->code);
-        echo '<script type="text/javascript">', 'history.go(-2);', '</script>';
+        return redirect()->route('admin.index');
     }
     public function rate($id)
     {

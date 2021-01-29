@@ -274,9 +274,25 @@
                                         </td>
                                         <td>{{ $item->day_release }}</td>
                                         <td>
-                                            <span
-                                                style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;"
-                                                title="{{ $item->actress }}">{{ $item->actress }}</span>
+                                            @php
+                                            $actress=0;
+                                            $arr=explode(',',$item->actress);
+                                            if (count($arr)==1) {
+                                            $actress=1;
+                                            }
+                                            @endphp
+                                            @if ($actress == 1)
+                                                <span
+                                                    style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;"
+                                                    title="{{ $item->actress }}"><a
+                                                        href="{{ route('admin.list.search', ['actress' => $item->actress]) }}"
+                                                        class="text-decoration-none text-primary">{{ $item->actress }}</a></span>
+                                            @else
+                                                <span
+                                                    style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;"
+                                                    title="{{ $item->actress }}">{{ $item->actress }}</span>
+                                            @endif
+
                                         </td>
                                         <td>
                                             <img src="{{ $item->thumbnail }}" alt="" class="img-fluid w-50"
