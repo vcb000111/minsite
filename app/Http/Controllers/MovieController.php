@@ -50,6 +50,7 @@ class MovieController extends Controller
         $movie->day_release = $request->day_release;
         $movie->cate_id = $request->cate_id;
         $movie->subtitle = $request->subtitle;
+        $movie->download = $request->download;
 
         $uploadedFileUrl = cloudinary()->uploadFile($request->thumbnail, array("overwrite" => true))->getPublicId();
         $rename = cloudinary()->rename($uploadedFileUrl, $request->code, array("overwrite" => true));
@@ -113,7 +114,7 @@ class MovieController extends Controller
         $movie->cate_id = $request->cate_id;
         $movie->subtitle = $request->subtitle;
         $movie->actress = $request->actress;
-
+        $movie->download = $request->download;
         if ($movie->thumbnail != $request->thumbnail) {
             $uploadedFileUrl = cloudinary()->uploadFile($request->thumbnail, array("overwrite" => true))->getPublicId();
             $rename = cloudinary()->rename($uploadedFileUrl, $request->code, array("overwrite" => true));

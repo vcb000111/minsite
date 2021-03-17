@@ -252,17 +252,14 @@
                                     @endif
                                 </td>
                                 <td class="m-0 p-0">
-                                    @php
-                                    $link=explode(",", $item->url);
-                                    @endphp
-                                    @if ($link[0])
-                                    <a class="text-decoration-none text-info" href="{{ $link[0] }}" title="Mở trong tab mới" target="_blank"><b>View</b></a>
+                                    @if ($item->url)
+                                    <a class="text-decoration-none text-danger" href="{{ $item->url }}" title="Mở trong tab mới" target="_blank"><b>View</b></a>
                                     @endif
-                                    @if (count($link)==2)
-                                    <a class="text-decoration-none text-success" href="{{ $link[1] }}" title="Mở trong tab mới" target="_blank"><b>Down</b></a>
+                                    @if ($item->download)
+                                    <a class="text-decoration-none text-success" href="{{ $item->download }}" title="Mở trong tab mới" target="_blank"><b>Down</b></a>
                                     @endif
                                     @if ($item->subtitle)
-                                    <a class="text-decoration-none text-danger" href="{{ $item->subtitle }}" title="Mở trong tab mới" target="_blank"><b>Sub</b></a>
+                                    <a class="text-decoration-none text-info" href="{{ $item->subtitle }}" title="Mở trong tab mới" target="_blank"><b>Sub</b></a>
                                     @endif
 
                                 </td>

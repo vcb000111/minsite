@@ -204,17 +204,14 @@
                                     </div>
                                 </div>
                                 <div>
-                                    @php
-                                    $link=explode(",", $item->url);
-                                    @endphp
-                                    @if ($link[0])
-                                    <a href="{{ $link[0] }}" type="button" target="_blank" class="btn btn-outline-info btn-sm font-weight-bold">View</a>
+                                    @if ($item->url)
+                                    <a href="{{ $item->url }}" type="button" target="_blank" class="btn btn-outline-danger btn-sm font-weight-bold">View</a>
                                     @endif
-                                    @if (count($link)==2)
-                                    <a href="{{ $link[1] }}" type="button" target="_blank" class="btn btn-outline-success btn-sm font-weight-bold">Down</a>
+                                    @if ($item->download)
+                                    <a href="{{ $item->download }}" type="button" target="_blank" class="btn btn-outline-success btn-sm font-weight-bold">Down</a>
                                     @endif
                                     @if ($item->subtitle)
-                                    <a href="{{ $item->subtitle }}" type="button" target="_blank" class="btn btn-outline-danger btn-sm font-weight-bold">Sub</a>
+                                    <a href="{{ $item->subtitle }}" type="button" target="_blank" class="btn btn-outline-info btn-sm font-weight-bold">Sub</a>
                                     @endif
                                     @if ($item->favourite == 1)
                                     <a href="{{ route('admin.movie.rate', $item->id) }}"><i class="fas fa-star text-warning fa-lg float-right mt-2"></i></a>
