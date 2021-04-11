@@ -205,13 +205,13 @@
                                 </div>
                                 <div>
                                     @if ($item->url)
-                                    <a href="{{ $item->url }}" type="button" target="_blank" class="btn btn-outline-danger btn-sm font-weight-bold">View</a>
+                                    <a href="{{ $item->url }}" type="button" target="_blank" class="btn btn-outline-danger btn-sm font-weight-bold"><i class="fas fa-play-circle fa-lg ml-1 mr-1"></i></a>
                                     @endif
                                     @if ($item->download)
-                                    <a href="{{ $item->download }}" type="button" target="_blank" class="btn btn-outline-success btn-sm font-weight-bold">Down</a>
+                                    <a href="{{ $item->download }}" type="button" target="_blank" class="btn btn-outline-success btn-sm font-weight-bold"><i class="fas fa-download fa-lg ml-1 mr-1"></i></a>
                                     @endif
                                     @if ($item->subtitle)
-                                    <a href="{{ $item->subtitle }}" type="button" target="_blank" class="btn btn-outline-info btn-sm font-weight-bold">Sub</a>
+                                    <a href="{{ $item->subtitle }}" type="button" target="_blank" class="btn btn-outline-info btn-sm font-weight-bold"><i class="fas fa-closed-captioning fa-lg ml-1 mr-1"></i></a>
                                     @endif
                                     <a href="{{ route('admin.thumbnail', ['cate_id' => $item_cate->id]) }}" class="float-right ml-2 font-weight-bold text-dark" style="margin-top: 5px; text-decoration: overline;">{{ $item_cate->cate_name }} </a>
                                     @if ($item->favourite == 1)
