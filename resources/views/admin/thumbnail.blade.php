@@ -213,13 +213,14 @@
                                     @if ($item->subtitle)
                                     <a href="{{ $item->subtitle }}" type="button" target="_blank" class="btn btn-outline-info btn-sm font-weight-bold">Sub</a>
                                     @endif
+                                    <a href="{{ route('admin.thumbnail', ['cate_id' => $item_cate->id]) }}" class="float-right ml-2 font-weight-bold text-dark" style="margin-top: 5px; text-decoration: overline;">{{ $item_cate->cate_name }} </a>
                                     @if ($item->favourite == 1)
                                     <a href="{{ route('admin.movie.rate', $item->id) }}"><i class="fas fa-star text-warning fa-lg float-right mt-2"></i></a>
                                     @else
-                                    <a href="{{ route('admin.movie.rate', $item->id) }}"><i class="far fa-star fa-lg float-right mt-2"></i></a>
+                                    <a href="{{ route('admin.movie.rate', $item->id) }}"><i class="far fa-star text-dark fa-lg float-right mt-2"></i></a>
                                     @endif
                                     @if ($item->seen == 0)
-                                    <a href="{{ route('admin.movie.seen', $item->id) }}" class="ml-2 mr-2 float-right" style="padding-top: 6px"><i class="fas fa-eye fa-lg"></i></a>
+                                    <a href="{{ route('admin.movie.seen', $item->id) }}" class="ml-2 mr-2 float-right" style="padding-top: 6px"><i class="fas text-dark fa-eye fa-lg"></i></a>
                                     @else
                                     <a href="{{ route('admin.movie.seen', $item->id) }}" class="ml-2 mr-2 float-right" style="padding-top: 6px"><i class="fas fa-eye text-warning fa-lg"></i></a>
                                     @endif
