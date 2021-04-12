@@ -208,10 +208,18 @@
                                     <a href="{{ $item->url }}" type="button" target="_blank" class="btn btn-outline-danger btn-sm font-weight-bold"><i class="fas fa-play-circle fa-lg ml-1 mr-1"></i></a>
                                     @endif
                                     @if ($item->download)
+                                    @if (strpos($item->download,'drive'))
+                                    <a href="{{ $item->download }}" type="button" target="_blank" class="btn btn-outline-success btn-sm font-weight-bold"><i class="fas fa-cloud-download-alt fa-lg ml-1 mr-1"></i></a>
+                                    @else
                                     <a href="{{ $item->download }}" type="button" target="_blank" class="btn btn-outline-success btn-sm font-weight-bold"><i class="fas fa-download fa-lg ml-1 mr-1"></i></a>
                                     @endif
+                                    @endif
                                     @if ($item->subtitle)
+                                    @if (strpos($item->subtitle,'drive'))
                                     <a href="{{ $item->subtitle }}" type="button" target="_blank" class="btn btn-outline-info btn-sm font-weight-bold"><i class="fas fa-closed-captioning fa-lg ml-1 mr-1"></i></a>
+                                    @else
+                                    <a href="{{ $item->subtitle }}" type="button" target="_blank" class="btn btn-outline-info btn-sm font-weight-bold"><i class="far fa-closed-captioning fa-lg ml-1 mr-1"></i></a>
+                                    @endif
                                     @endif
                                     <a href="{{ route('admin.thumbnail', ['cate_id' => $item_cate->id]) }}" class="float-right ml-2 font-weight-bold text-dark" style="margin-top: 5px; text-decoration: overline;">{{ $item_cate->cate_name }} </a>
                                     @if ($item->favourite == 1)
