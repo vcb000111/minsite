@@ -256,10 +256,18 @@
                                     <a class="text-decoration-none text-danger" href="{{ $item->url }}" title="Mở trong tab mới" target="_blank"><b>View</b></a>
                                     @endif
                                     @if ($item->download)
+                                    @if (strpos($item->download,'drive'))
+                                    <a class="text-decoration-none text-success" href="{{ $item->download }}" title="Mở trong tab mới" target="_blank"><b>Down™</b></a>
+                                    @else
                                     <a class="text-decoration-none text-success" href="{{ $item->download }}" title="Mở trong tab mới" target="_blank"><b>Down</b></a>
                                     @endif
+                                    @endif
                                     @if ($item->subtitle)
+                                    @if (strpos($item->subtitle,'drive'))
+                                    <a class="text-decoration-none text-info" href="{{ $item->subtitle }}" title="Mở trong tab mới" target="_blank"><b>Sub™</b></a>
+                                    @else
                                     <a class="text-decoration-none text-info" href="{{ $item->subtitle }}" title="Mở trong tab mới" target="_blank"><b>Sub</b></a>
+                                    @endif
                                     @endif
 
                                 </td>
