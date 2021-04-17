@@ -16,6 +16,8 @@
                         <a href="{{ route('admin.thumbnail') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail</a>
                         <a href="{{ route('admin.thumbnail.random') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail
                             Random</a>
+                        <a href="{{ route('admin.thumbnail.fap') }}" class="btn btn-sm btn-outline-dark shadow-sm mr-2">FAP <i class="fas fa-heart text-danger"></i></a>
+
                     </ul>
                     <form class="form-inline input-group-sm" method="GET" enctype="multipart/form-data" action="{{ route('admin.list.search') }}">
                         <input type="text" class="form-control w-auto float-right mr-2" name="search" placeholder="Search list" required name="access_key">

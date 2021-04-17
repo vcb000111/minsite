@@ -28,6 +28,7 @@ Route::group(['prefix' => 'manage'], function () {
     Route::get('/list/search', 'HomeController@listSearch')->name('admin.list.search')->middleware('accessMiddleware');
     Route::get('/thumbnail', 'HomeController@thumbnail')->name('admin.thumbnail')->middleware('accessMiddleware');
     Route::get('/thumbnail/random', 'HomeController@thumbnailRandom')->name('admin.thumbnail.random')->middleware('accessMiddleware');
+    Route::get('/thumbnail/fap', 'HomeController@thumbnailFap')->name('admin.thumbnail.fap')->middleware('accessMiddleware');
     Route::get('/thumbnail/search', 'HomeController@thumbnailSearch')->name('admin.thumbnail.search')->middleware('accessMiddleware');
     Route::get('cate/add', 'CateController@create')->middleware('accessMiddleware');
     Route::post('cate/add', 'CateController@store')->name('admin.cate.add')->middleware('accessMiddleware');

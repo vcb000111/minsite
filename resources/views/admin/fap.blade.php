@@ -7,7 +7,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="m-0 font-weight-bold text-primary">
-                    <h4 class="text-center font-weight-bold mb-4">Thumbnail List Movie</h4>
+                    <h4 class="text-center font-weight-bold mb-4">FAP TO MY IDOL!</h4>
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -16,18 +16,12 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                 <span><a href="{{ route('admin.index') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">List</a></span>
-                                @if ($thumbnail == 1)
 
-                                <a href="{{ route('admin.thumbnail') }}" class="btn btn-sm btn-primary shadow-sm mr-2">Thumbnail</a>
+                                <a href="{{ route('admin.thumbnail') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail</a>
                                 <a href="{{ route('admin.thumbnail.random') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail
                                     Random</a>
-                                <a href="{{ route('admin.thumbnail.fap') }}" class="btn btn-sm btn-outline-dark shadow-sm mr-2">FAP <i class="fas fa-heart text-danger"></i></a>
+                                <a href="{{ route('admin.thumbnail.fap') }}" class="btn btn-sm btn-dark shadow-sm mr-2">FAP <i class="fas fa-heart text-danger"></i></a>
 
-                                @else <a href="{{ route('admin.thumbnail') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail</a>
-                                <a href="{{ route('admin.thumbnail.random') }}" class="btn btn-sm btn-primary shadow-sm mr-2">Thumbnail
-                                    Random</a>
-                                <a href="{{ route('admin.thumbnail.fap') }}" class="btn btn-sm btn-outline-dark shadow-sm mr-2">FAP <i class="fas fa-heart text-danger"></i></a>
-                                @endif
                             </ul>
                             <form class="form-inline input-group-sm" method="GET" enctype="multipart/form-data" action="{{ route('admin.list.search') }}">
                                 <input type="text" class="form-control w-auto float-right mr-2" name="search" placeholder="Search list" required name="access_key">
@@ -247,15 +241,7 @@
                             <img id="img01" style="width:100%">
                         </div>
                     </div>
-                </div>
-                <div class="row d-flex align-items-center justify-content-center mt-4">
-
-                    <ul>
-                        @if ($movie->links())
-                        {{ $movie->links() }}
-                        @endif
-                        <!-- {{ $movie->links() }} -->
-                    </ul>
+                    <h6 class="text-center text-danger font-weight-bold mb-4">DO NOT RELOAD!</h6>
                 </div>
             </div>
         </div>

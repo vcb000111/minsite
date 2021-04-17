@@ -252,4 +252,71 @@ class HomeController extends Controller
         $seen = 0;
         return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
     }
+    public function thumbnailFap(Request $request)
+    {
+        $thumbnail = 0;
+        $cate = Cate::all();
+        if ($request->seen && $request->favourite && $request->cate_id) {
+            $movie = Movie::where('seen', 1)->where('favourite', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $seen = 1;
+            $favourite = 1;
+            $cate_id = $request->cate_id;
+            $movie->appends(['seen' => '1', 'favourite' => '1', 'cate_id' => $request->cate_id])->links();
+            return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
+        }
+        if ($request->seen && $request->favourite) {
+            $movie = Movie::where('seen', 1)->where('favourite', 1)->latest()->paginate(40);
+            $seen = 1;
+            $favourite = 1;
+            $cate_id = 0;
+            $movie->appends(['seen' => '1', 'favourite' => '1'])->links();
+            return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
+        }
+        if ($request->seen && $request->cate_id) {
+            $movie = Movie::where('seen', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $seen = 1;
+            $favourite = 0;
+            $cate_id = $request->cate_id;
+            $movie->appends(['seen' => '1', 'cate_id' => $request->cate_id])->links();
+            return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
+        }
+        if ($request->favourite && $request->cate_id) {
+            $movie = Movie::where('favourite', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $seen = 0;
+            $favourite = 1;
+            $cate_id = $request->cate_id;
+            $movie->appends(['favourite' => '1', 'cate_id' => $request->cate_id])->links();
+            return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
+        }
+        if ($request->cate_id) {
+            $movie = Movie::where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $seen = 0;
+            $favourite = 0;
+            $cate_id = $request->cate_id;
+            $movie->appends(['cate_id' => $request->cate_id])->links();
+            return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
+        }
+        if ($request->favourite) {
+            $movie = Movie::where('favourite', 1)->latest()->paginate(40);
+            $seen = 0;
+            $favourite = 1;
+            $cate_id = 0;
+            $movie->appends(['favourite' => '1'])->links();
+            return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
+        }
+        if ($request->seen) {
+            $movie = Movie::where('seen', 1)->latest()->paginate(40);
+            $seen = 1;
+            $favourite = 0;
+            $cate_id = 0;
+            $movie->appends(['seen' => '1'])->links();
+            return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
+        }
+        $movie = Movie::inRandomOrder()->limit(4)->get();
+        $cate = Cate::all();
+        $favourite = 0;
+        $cate_id = 0;
+        $seen = 0;
+        return view('admin.fap', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
+    }
 }
