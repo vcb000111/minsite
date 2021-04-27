@@ -24,7 +24,11 @@
 
                             </ul>
                             <form class="form-inline input-group-sm" method="GET" enctype="multipart/form-data" action="{{ route('admin.list.search') }}">
+                                @if ($search!='')
+                                <input type="text" class="form-control w-auto float-right mr-2" value="{{ $search }}" name="search" placeholder="Search list" required name="access_key">
+                                @else
                                 <input type="text" class="form-control w-auto float-right mr-2" name="search" placeholder="Search list" required name="access_key">
+                                @endif
                             </form>
                             <form class="form-inline input-group-sm" method="GET" enctype="multipart/form-data" action="{{ route('admin.thumbnail.search') }}">
                                 <input type="text" class="form-control w-auto float-right mr-2" name="search" placeholder="Search thumbnail" required name="access_key">
