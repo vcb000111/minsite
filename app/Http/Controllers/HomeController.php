@@ -15,7 +15,7 @@ class HomeController extends Controller
         $cate = Cate::all();
         $search = '';
         if ($request->seen && $request->favourite && $request->cate_id) {
-            $movie = Movie::where('seen', 1)->where('favourite', 1)->where('cate_id', $request->cate_id)->latest()->paginate(100);
+            $movie = Movie::where('seen', 1)->where('favourite', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(100);
             $seen = 1;
             $favourite = 1;
             $cate_id = $request->cate_id;
@@ -23,7 +23,7 @@ class HomeController extends Controller
             return view('admin.index', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen'));
         }
         if ($request->seen && $request->favourite) {
-            $movie = Movie::where('seen', 1)->where('favourite', 1)->latest()->paginate(100);
+            $movie = Movie::where('seen', 1)->where('favourite', 1)->orderBy("updated_at", "desc")->paginate(100);
             $seen = 1;
             $favourite = 1;
             $cate_id = 0;
@@ -31,7 +31,7 @@ class HomeController extends Controller
             return view('admin.index', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen'));
         }
         if ($request->seen && $request->cate_id) {
-            $movie = Movie::where('seen', 1)->where('cate_id', $request->cate_id)->latest()->paginate(100);
+            $movie = Movie::where('seen', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(100);
             $seen = 1;
             $favourite = 0;
             $cate_id = $request->cate_id;
@@ -39,7 +39,7 @@ class HomeController extends Controller
             return view('admin.index', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen'));
         }
         if ($request->favourite && $request->cate_id) {
-            $movie = Movie::where('favourite', 1)->where('cate_id', $request->cate_id)->latest()->paginate(100);
+            $movie = Movie::where('favourite', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(100);
             $seen = 0;
             $favourite = 1;
             $cate_id = $request->cate_id;
@@ -55,7 +55,7 @@ class HomeController extends Controller
             return view('admin.index', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen'));
         }
         if ($request->favourite) {
-            $movie = Movie::where('favourite', 1)->latest()->paginate(100);
+            $movie = Movie::where('favourite', 1)->orderBy("updated_at", "desc")->paginate(100);
             $seen = 0;
             $favourite = 1;
             $cate_id = 0;
@@ -63,7 +63,7 @@ class HomeController extends Controller
             return view('admin.index', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen'));
         }
         if ($request->seen) {
-            $movie = Movie::where('seen', 1)->latest()->paginate(100);
+            $movie = Movie::where('seen', 1)->orderBy("updated_at", "desc")->paginate(100);
             $seen = 1;
             $favourite = 0;
             $cate_id = 0;
@@ -102,7 +102,7 @@ class HomeController extends Controller
         $cate = Cate::all();
         $search = '';
         if ($request->seen && $request->favourite && $request->cate_id) {
-            $movie = Movie::where('seen', 1)->where('favourite', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->where('favourite', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 1;
             $cate_id = $request->cate_id;
@@ -110,7 +110,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->seen && $request->favourite) {
-            $movie = Movie::where('seen', 1)->where('favourite', 1)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->where('favourite', 1)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 1;
             $cate_id = 0;
@@ -118,7 +118,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->seen && $request->cate_id) {
-            $movie = Movie::where('seen', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 0;
             $cate_id = $request->cate_id;
@@ -126,7 +126,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->favourite && $request->cate_id) {
-            $movie = Movie::where('favourite', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $movie = Movie::where('favourite', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 0;
             $favourite = 1;
             $cate_id = $request->cate_id;
@@ -142,7 +142,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->favourite) {
-            $movie = Movie::where('favourite', 1)->latest()->paginate(40);
+            $movie = Movie::where('favourite', 1)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 0;
             $favourite = 1;
             $cate_id = 0;
@@ -150,7 +150,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->seen) {
-            $movie = Movie::where('seen', 1)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 0;
             $cate_id = 0;
@@ -193,7 +193,7 @@ class HomeController extends Controller
         $cate = Cate::all();
         $search = '';
         if ($request->seen && $request->favourite && $request->cate_id) {
-            $movie = Movie::where('seen', 1)->where('favourite', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->where('favourite', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 1;
             $cate_id = $request->cate_id;
@@ -201,7 +201,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->seen && $request->favourite) {
-            $movie = Movie::where('seen', 1)->where('favourite', 1)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->where('favourite', 1)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 1;
             $cate_id = 0;
@@ -209,7 +209,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->seen && $request->cate_id) {
-            $movie = Movie::where('seen', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 0;
             $cate_id = $request->cate_id;
@@ -217,7 +217,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->favourite && $request->cate_id) {
-            $movie = Movie::where('favourite', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $movie = Movie::where('favourite', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 0;
             $favourite = 1;
             $cate_id = $request->cate_id;
@@ -233,7 +233,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->favourite) {
-            $movie = Movie::where('favourite', 1)->latest()->paginate(40);
+            $movie = Movie::where('favourite', 1)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 0;
             $favourite = 1;
             $cate_id = 0;
@@ -241,7 +241,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('search', 'movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->seen) {
-            $movie = Movie::where('seen', 1)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 0;
             $cate_id = 0;
@@ -260,7 +260,7 @@ class HomeController extends Controller
         $thumbnail = 0;
         $cate = Cate::all();
         if ($request->seen && $request->favourite && $request->cate_id) {
-            $movie = Movie::where('seen', 1)->where('favourite', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->where('favourite', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 1;
             $cate_id = $request->cate_id;
@@ -268,7 +268,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->seen && $request->favourite) {
-            $movie = Movie::where('seen', 1)->where('favourite', 1)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->where('favourite', 1)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 1;
             $cate_id = 0;
@@ -276,7 +276,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->seen && $request->cate_id) {
-            $movie = Movie::where('seen', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 0;
             $cate_id = $request->cate_id;
@@ -284,7 +284,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->favourite && $request->cate_id) {
-            $movie = Movie::where('favourite', 1)->where('cate_id', $request->cate_id)->latest()->paginate(40);
+            $movie = Movie::where('favourite', 1)->where('cate_id', $request->cate_id)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 0;
             $favourite = 1;
             $cate_id = $request->cate_id;
@@ -300,7 +300,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->favourite) {
-            $movie = Movie::where('favourite', 1)->latest()->paginate(40);
+            $movie = Movie::where('favourite', 1)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 0;
             $favourite = 1;
             $cate_id = 0;
@@ -308,7 +308,7 @@ class HomeController extends Controller
             return view('admin.thumbnail', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
         }
         if ($request->seen) {
-            $movie = Movie::where('seen', 1)->latest()->paginate(40);
+            $movie = Movie::where('seen', 1)->orderBy("updated_at", "desc")->paginate(40);
             $seen = 1;
             $favourite = 0;
             $cate_id = 0;
