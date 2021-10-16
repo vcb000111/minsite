@@ -332,6 +332,7 @@ class HomeController extends Controller
         $cate_id = 0;
         $seen = 0;
         $search = '';
+        $thumbnail = '';
         return view('admin.idols', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail', 'search', 'idols'));
     }
     public function add_idol_get()
