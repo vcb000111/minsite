@@ -14,9 +14,9 @@
                     <ul class="navbar-nav mr-auto">
                         <span><a href="{{ route('admin.index') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">List</a></span>
                         <a href="{{ route('admin.thumbnail') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail</a>
-                        <a href="{{ route('admin.thumbnail.random') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">Thumbnail
-                            Random</a>
-                        <a href="{{ route('admin.thumbnail.fap') }}" class="btn btn-sm btn-outline-dark shadow-sm mr-2">FAP <i class="fas fa-heart text-danger"></i></a>
+                        <a href="{{ route('admin.thumbnail.random') }}" class="btn btn-sm btn-outline-primary shadow-sm mr-2">Random</a>
+                        <a href="{{ route('admin.thumbnail.fap') }}" class="btn btn-sm btn-outline-dark shadow-sm mr-2">FAP</a>
+                        <a href="{{ route('admin.idols') }}" class="btn btn-sm btn-outline-danger shadow-sm mr-2">IDOLS</i></a>
 
                     </ul>
                     <form class="form-inline input-group-sm" method="GET" enctype="multipart/form-data" action="{{ route('admin.list.search') }}">

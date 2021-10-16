@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Movie;
 use App\Cate;
+use App\Idol;
 
 class HomeController extends Controller
 {
@@ -321,5 +322,32 @@ class HomeController extends Controller
         $cate_id = 0;
         $seen = 0;
         return view('admin.fap', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail'));
+    }
+    public function idols(Request $request)
+    {
+        $idols = Idol::inRandomOrder()->get();
+        $movie = Movie::all();
+        $cate = Cate::all();
+        $favourite = 0;
+        $cate_id = 0;
+        $seen = 0;
+        $search = '';
+        return view('admin.idols', compact('movie', 'cate', 'cate_id', 'favourite', 'seen', 'thumbnail', 'search', 'idols'));
+    }
+    public function add_idol_get()
+    {
+        # code...
+        return view('admin.addIdol');
+    }
+    public function add_idol_post(Request $request)
+    {
+        # code...
+        $idol = new Idol;
+        $idol->idol_name = $request->idol_name;
+        $uploadedFileUrl = cloudinary()->uploadFile($request->idol_thumbnail, array("overwrite" => true))->getPublicId();
+        $rename = cloudinary()->rename($uploadedFileUrl, $request->idol_name, array("overwrite" => true));
+        $idol->idol_thumbnail = $rename['secure_url'];
+        $idol->save();
+        return redirect()->route('admin.idols');
     }
 }
