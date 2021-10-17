@@ -42,6 +42,8 @@ Route::group(['prefix' => 'manage'], function () {
     Route::get('idols/', 'HomeController@idols')->name('admin.idols')->middleware('accessMiddleware');
     Route::get('idols/add', 'HomeController@add_idol_get')->name('admin.idols.add.get')->middleware('accessMiddleware');
     Route::post('idols/add', 'HomeController@add_idol_post')->name('admin.idols.add.post')->middleware('accessMiddleware');
+    Route::get('idols/edit/{id}', 'HomeController@edit_idol_get')->name('admin.idols.edit.get')->middleware('accessMiddleware');
+    Route::post('idols/edit/{id}', 'HomeController@edit_idol_post')->name('admin.idols.edit.post')->middleware('accessMiddleware');
 });
 Route::get('{all?}', function () {
     return redirect()->route('admin.access');

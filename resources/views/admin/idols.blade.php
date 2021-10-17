@@ -63,6 +63,9 @@
                                     <div class="text-center">
                                         <a href="{{ route('admin.thumbnail.search', ['search' => $item->idol_name]) }}" style="font-size:20px" class="card-link text-dark font-weight-bold">
                                             {{ $item->idol_name }}</a>
+                                        <a href="{{route('admin.idols.edit.get', $item->id)}}">
+                                            <i class="fas fa-pencil-alt text-success pl-1"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -351,4 +351,23 @@ class HomeController extends Controller
         $idol->save();
         return redirect()->route('admin.idols');
     }
+    public function edit_idol_get($id)
+    {
+        # code...
+        $idol = Idol::find($id);
+        return view('admin.editIdol', compact('idol'));
+    }
+    public function edit_idol_post(Request $request, $id)
+    {
+        # code...
+        $idol = Idol::find($id);
+        $idol->idol_name = $request->idol_name;
+        if ($idol->idol_thumbnail != $request->idol_thumbnail) {
+            $uploadedFileUrl = cloudinary()->uploadFile($request->idol_thumbnail, array("overwrite" => true))->getPublicId();
+            $rename = cloudinary()->rename($uploadedFileUrl, $request->idol_name, array("overwrite" => true));
+            $idol->idol_thumbnail = $rename['secure_url'];
+        }
+        $idol->save();
+        return redirect()->route('admin.idols');
+    }
 }
