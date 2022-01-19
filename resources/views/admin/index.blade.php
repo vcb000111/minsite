@@ -188,6 +188,46 @@
                 </div>
             </div>
             <div class="card-body p-2">
+                <div class="text-center">
+                    <h3 class="text-dark"><a href="{{ route('admin.index') }}" class="text-decoration-none">Total: <b>{{ $movieTotal->count() }}</b></a>
+                        @php
+                        $countSeen=0;
+                        $countFavourite=0;
+                        @endphp
+                        @foreach ($movieTotal as $item)
+                        @if ($item->seen==1)
+                        @php
+                        $countSeen+=1
+                        @endphp
+                        @endif
+                        @if ($item->favourite==1)
+                        @php
+                        $countFavourite+=1
+                        @endphp
+                        @endif
+                        @endforeach
+                        | <a href="{{ route('admin.thumbnail', ['seen' => '1']) }}" class="text-decoration-none">Seen: <b>{{$countSeen}}</b></a>
+                        | <a href="{{ route('admin.thumbnail', ['favourite' => '1']) }}" class="text-decoration-none">Favourite: <b>{{$countFavourite}}</b></a>
+                    </h3>
+                    <h4 class="text-dark">
+                        @foreach ($cate as $item_cate)
+                        @php
+                        $count=0
+                        @endphp
+                        @foreach ($movieTotal as $item)
+                        @if ($item_cate->id == $item->cate_id)
+                        @php
+                        $count+=1
+                        @endphp
+                        @endif
+                        @endforeach
+                        @if ($count!=0)
+                        | <a class="text-decoration-none" href="{{ route('admin.thumbnail', ['cate_id' => $item_cate->id]) }}">{{ $item_cate->cate_name }}: <b>{{$count}}</b></a>
+                        @endif
+                        @endforeach
+                        |
+                    </h4>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped text-center text-dark" id="dataTable" width="100%">
                         <thead>
